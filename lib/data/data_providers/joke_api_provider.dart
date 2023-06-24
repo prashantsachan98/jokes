@@ -1,17 +1,15 @@
 import 'dart:convert';
+import 'package:flutter_app/service_locator.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_app/data/models/joke.dart';
-
 import '../../constants/api_key.dart';
 
 class JokeApiProvider {
-  final http.Client httpClient;
-  
-
-  JokeApiProvider(this.httpClient);
+  final http.Client httpClient = serviceLocator<http.Client>();
 
   Future<Joke> getJoke() async {
-    final response = await httpClient.get(Uri.parse('https://hindi-jokes-api.onrender.com/jokes?api_key=$apiKey'));
+    final response = await httpClient.get(Uri.parse(
+        'https://hindi-jokes-api.onrender.com/jokes?api_key=$apiKey'));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return Joke.fromJson(data);

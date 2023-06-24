@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (context) => JokeBloc(serviceLocator()),
+        create: (context) => JokeBloc(),
         child: HomePage(title: 'Flutter Jokes'),
       ),
     );

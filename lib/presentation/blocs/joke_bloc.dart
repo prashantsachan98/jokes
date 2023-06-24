@@ -1,12 +1,13 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_app/service_locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/data/models/joke.dart';
 import 'package:flutter_app/domain/usecases/get_joke_usecase.dart';
 
 class JokeBloc extends Bloc<JokeEvent, JokeState> {
-  final GetJokeUseCase getJokeUseCase;
+  final GetJokeUseCase getJokeUseCase = serviceLocator<GetJokeUseCase>();
 
-  JokeBloc(this.getJokeUseCase) : super(JokeInitial()) {
+  JokeBloc() : super(JokeInitial()) {
     on<JokeRequested>((event, emit) async {
       emit(JokeLoading());
       try {

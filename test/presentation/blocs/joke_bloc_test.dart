@@ -7,9 +7,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'joke_bloc_test.mocks.dart';
 
-
-
-
 @GenerateMocks([GetJokeUseCase])
 void main() {
   group('JokeBloc', () {
@@ -26,7 +23,7 @@ void main() {
       'emits [JokeLoading, JokeLoaded] when JokeRequested is added',
       build: () {
         when(getJokeUseCase()).thenAnswer((_) async => joke);
-        return JokeBloc(getJokeUseCase);
+        return JokeBloc();
       },
       act: (bloc) => bloc.add(JokeRequested()),
       expect: () => [JokeLoading(), JokeLoaded(joke)],
@@ -36,7 +33,7 @@ void main() {
       'emits [JokeLoading, JokeError] when GetJokeUseCase throws an exception',
       build: () {
         when(getJokeUseCase()).thenThrow(Exception('Failed to fetch joke'));
-        return JokeBloc(getJokeUseCase);
+        return JokeBloc();
       },
       act: (bloc) => bloc.add(JokeRequested()),
       expect: () => [JokeLoading(), JokeError('Failed to fetch joke')],

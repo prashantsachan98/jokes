@@ -8,7 +8,7 @@ final GetIt serviceLocator = GetIt.instance;
 
 void setupServiceLocator() {
   serviceLocator.registerLazySingleton(() => http.Client());
-  serviceLocator.registerLazySingleton(() => JokeApiProvider(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => JokeRepository(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetJokeUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => JokeApiProvider());
+  serviceLocator.registerLazySingleton(() => JokeRepository());
+  serviceLocator.registerLazySingleton(() => GetJokeUseCase());
 }
